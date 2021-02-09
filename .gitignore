@@ -31,3 +31,5 @@ test/acceptance/workspaces/**/.gradle
 test/**/.gradle
 .iac-data
 !test/smoke/.iac-data
+# Jest
+coverage
