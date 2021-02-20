@@ -15,9 +15,15 @@ export function formatResults(
   const iacLocalExecutionGroupedResults = groupMultiDocResults(
     iacLocalExecutionResults,
   );
-  return iacLocalExecutionGroupedResults.map((iacScanResult) =>
-    iacLocalFileScanToFormattedResult(iacScanResult, options.severityThreshold),
+  const formattedResults = iacLocalExecutionGroupedResults.map(
+    (iacScanResult) =>
+      iacLocalFileScanToFormattedResult(
+        iacScanResult,
+        options.severityThreshold,
+      ),
   );
+
+  return formattedResults.length > 1 ? formattedResults : formattedResults[0];
 }
 
 //

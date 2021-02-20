@@ -1,14 +1,35 @@
 import { SEVERITY } from '../../../../lib/snyk-test/common';
 import { IacFileInDirectory } from '../../../../lib/types';
 
-export type IacFileMetadata = IacFileInDirectory;
-export interface IacFileData extends IacFileMetadata {
-  jsonContent: Record<string, any>;
+export interface IacFileData extends IacFileInDirectory {
   fileContent: string;
+}
+export const VALID_FILE_TYPES = ['tf', 'json', 'yaml', 'yml'];
+
+export interface ParsedIacFile extends IacFileData {
+  jsonContent: Record<string, any>;
   engineType: EngineType;
   docId?: number;
 }
-export interface IacFileScanResult extends IacFileData {
+
+export interface FailedIacFileParse extends IacFileData {
+  jsonContent: null;
+  engineType: null;
+  failureReason: string;
+  err: Error;
+}
+
+export type ScanningResults = {
+  scannedFiles: Array<IacFileScanResult>;
+  unscannedFiles: Array<FailedIacFileParse>;
+};
+
+export type ParsingResults = {
+  parsedFiles: Array<ParsedIacFile>;
+  failedFiles: Array<FailedIacFileParse>;
+};
+
+export interface IacFileScanResult extends ParsedIacFile {
   violatedPolicies: PolicyMetadata[];
 }
 
