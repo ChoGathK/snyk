@@ -1,0 +1,40 @@
+
+Testing some/path ...
+
+ ✗ [Medium] HttpToHttps
+     Path: sample-project/goof/app.js, line 12
+     Info: http (used in require) is an insecure protocol and should not be used in new code.
+
+ ✗ [Medium] DisablePoweredBy
+     Path: sample-project/goof/app.js, line 27
+     Info: Disable X-Powered-By header for your Express app (consider using Helmet middleware), because it exposes information about the used framework to potential attackers.
+
+ ✗ [Medium] NoRateLimitingForExpensiveWebOperation
+     Path: sample-project/goof/routes/index.js, line 77
+     Info: This endpoint handler performs a system command execution and does not use a rate-limiting mechanism. It may enable the attackers to perform Denial-of-service attacks. Consider using a rate-limiting middleware such as express-limit.
+
+ ✗ [Medium] NoRateLimitingForExpensiveWebOperation
+     Path: sample-project/goof/routes/index.js, line 166
+     Info: This endpoint handler performs a file system operation and does not use a rate-limiting mechanism. It may enable the attackers to perform Denial-of-service attacks. Consider using a rate-limiting middleware such as express-limit.
+
+ ✗ [High] Sqli
+     Path: sample-project/goof/routes/index.js, line 39
+     Info: Unsanitized input from the HTTP request body flows into find, where it is used in an SQL query. This may result in an SQL Injection vulnerability.
+
+ ✗ [High] CommandInjection
+     Path: sample-project/goof/routes/index.js, line 86
+     Info: Unsanitized input from the HTTP request body flows into child_process.exec, where it is used to build a shell command. This may result in a Command Injection vulnerability.
+
+ ✗ [High] XSS
+     Path: sample-project/goof/routes/index.js, line 109
+     Info: Unsanitized input from the HTTP request body flows into send, where it is used to render an HTML page returned to the user. This may result in a Cross-Site Scripting attack (XSS).
+
+
+✓ Test completed
+
+Organization:      undefined
+Test type:         Static code analysis
+Project path:      some/path
+
+7 Code issues found
+3 [High]  4 [Medium]
